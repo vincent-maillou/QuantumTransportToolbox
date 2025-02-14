@@ -517,7 +517,10 @@ class Spectral(OBCSolver):
             wrs, vrs = self.nevp(blocks, left=False)
             vls = None
 
-        mask, mask_inj, dE_dK_list = self._find_reflected_modes(wrs, vrs, blocks, vls=vls, find_injected=return_inj)
+        if return_inj:
+            mask, mask_inj, dE_dK_list = self._find_reflected_modes(wrs, vrs, blocks, vls=vls, find_injected=return_inj)
+        else:
+            mask = self._find_reflected_modes(wrs, vrs, blocks, vls=vls)
 
         wrs, vrs = self._upscale_eigenmodes(wrs, vrs)
 
@@ -532,7 +535,6 @@ class Spectral(OBCSolver):
 
         # Calculate the injection vector and return it together with the boundary self-energy
         if return_inj:
-
 
             mask_inj = mask_inj[0,:]
             vrs_inj = vrs[0][:,mask_inj]
