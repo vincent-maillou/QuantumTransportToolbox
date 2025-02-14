@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qttools"
+authors = [
+    { name = "Nicolas Vetsch", email = "vetschn@iis.ee.ethz.ch" },
+    { name = "Vincent Maillou", email = "vmaillou@iis.ee.ethz.ch" },
+    { name = "Anders Winka", email = "awinka@iis.ee.ethz.ch" },
+    { name = "Leonard Deuschle", email = "dleonard@iis.ee.ethz.ch" },
+    { name = "Alexandros Nikolaos Ziogas", email = "alziogas@iis.ee.ethz.ch" },
+    { name = "Jiang Cao", email = "jiang.cao@iis.ee.ethz.ch" },
+    { name = "Mathieu Luisier", email = "mluisier@iis.ee.ethz.ch" },
+]
+description = "The Quantum Transport Toolbox"
+license = { file = "LICENSE" }
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+keywords = ["Nano-TCAD", "Quantum Transport", "NEGF"]
+dynamic = ["version"]
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.23.2", "scipy"]
+[project.optional-dependencies]
+mpi4py = ["mpi4py"]
+cupy = ["cupy==13.2.0"]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mpi",
+    "pytest-xdist",
+    "coverage",
+    "black",
+    "blacken-docs",
+    "isort",
+    "ruff",
+    "just",
+]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings-python",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+    "mkdocs-section-index",
+]
+
+[project.urls]
+Code = "https://github.com/vincent-maillou/qttools"
+
+[tool.setuptools.dynamic]
+version = { attr = "qttools.__about__.__version__" }
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+testpaths = ["tests"]
+
+[tool.isort]
+profile = "black"
