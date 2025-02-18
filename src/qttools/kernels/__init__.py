@@ -15,5 +15,11 @@ elif xp.__name__ == "cupy":
 else:
     raise ValueError(f"Unrecognized ARRAY_MODULE '{xp.__name__}'")
 
+import qttools.kernels.eig as eig
 
-__all__ = ["dsbsparse_kernels", "dsbcoo_kernels", "dsbcsr_kernels", "obc_kernels"]
+__all__ = [
+    "dsbsparse_kernels",
+    "dsbcoo_kernels",
+    "dsbcsr_kernels",
+    "eig",
+]
